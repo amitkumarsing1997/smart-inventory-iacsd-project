@@ -1,0 +1,59 @@
+<html>
+<head>
+    <style>
+        @page {
+            size: A4;
+        }
+        .header {
+            padding: 1rem;
+        }
+        .top_content {
+            display: inline-block;
+        }
+
+        hr {
+            background-color: maroon;
+        }
+     </style>
+</head>
+<body style="text-align: center">
+    <div style="display: inline-block; text-align: center; vertical-align: middle; padding: 1rem;">
+        <h2>${shopName}</h2>
+        <div>${shopAddress}</div>
+    </div>
+    <hr/>
+    <table width="100%">
+        <tr>
+            <td>Bill To: <span style="font-weight: bold">${customerName}</span></td>
+            <td>Mobile No.: <span style="font-weight: bold">${customerMobileNo}</span></td>
+        </tr>
+    </table>
+    <hr/>
+    <table width="100%" style="margin-top: 10px; border-collapse: collapse;", border="1">
+        <thead>
+            <td>Sr.</td>
+            <th>Product</th>
+            <th>Code</th>
+            <th>Rate</th>
+            <th>Qty</th>
+            <th>Total</th>
+        </thead>
+        <#assign count=0>
+        <#list products as product>
+            <#assign count = count + 1>
+            <tr align="center">
+                <td>${count}</td>
+                <td>${product.name}</td>
+                <td>${product.code}</td>
+                <td>Rs. ${product.rate} /${product.rateUnit}</td>
+                <td>${product.quantity} ${product.unit}</td>
+                <td align="right">Rs. ${product.total}</td>
+            </tr>
+        </#list>
+        <tr style="font-weight: bold">
+            <td colspan="5" align="right" style="padding-right: 10px">Total</td>
+            <td style="padding-left: 10px">Rs. ${total}</td>
+        </tr>
+    </table>
+</body>
+</html>
